@@ -14,7 +14,6 @@ class AWSImageSupport(ImageSupport):
     def __init__(self, ctx):
         ImageSupport.__init__(self, ctx)
         ctx.service_name = 'ec2'
-        self.request = Request(ctx)
 
     def list_images(self, image_type=1):
         data = {}

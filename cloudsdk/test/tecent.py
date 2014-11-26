@@ -4,8 +4,8 @@ from cloudsdk.tecent.instance import TecentInstanceSupport
 from cloudsdk.tecent.cotext import TecentContext
 from cloudsdk.tecent.image import TecentImageSupport
 
-KEY_ID = 'AKIDXrc2p8iHOOJsD0CwhYJej2MGvU5mA1DP'
-KEY_SECRET = 'sIYOmtNMAIurmZv1X4vneiioFLLDdqPc'
+KEY_ID = 'your key'
+KEY_SECRET = 'your secret'
 
 
 class TestTecent(unittest.TestCase):

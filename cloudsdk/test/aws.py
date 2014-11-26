@@ -6,8 +6,8 @@ from cloudsdk.aws.instance import AWSInstanceSupport
 from cloudsdk.aws.context import AWSContext
 from cloudsdk.aws.datacenter import AWSDCSupport
 
-AWS_KEY = 'AKIAI3AIHM7BAUQAIETQ'
-SECRET_KEY = 'dzI9BlYkcloLhQWhMbV5sRS1Rbh2u7Ju9wV4oh3B'
+AWS_KEY = 'your key'
+SECRET_KEY = 'your secret'
 
 
 class TestAWSSDK(unittest.TestCase):

@@ -55,4 +55,3 @@ def _signature(secret, **params):
     h = hmac.new("{0}&".format(secret), sign, sha1)
     signature = base64.encodestring(h.digest()).strip()
     return signature
-

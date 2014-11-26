@@ -11,7 +11,6 @@ class AWSInstanceSupport(InstanceSupport):
     def __init__(self, ctx):
         InstanceSupport.__init__(self, ctx)
         ctx.service_name = 'ec2'
-        self.request = Request(ctx)
 
     def launch(self, image=None, flavor=None, hostname=None, bandwidth=None, **kwargs):
         rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='RunInstances', ImageId=image,

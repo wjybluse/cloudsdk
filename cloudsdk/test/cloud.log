@@ -1,6 +1,0 @@
-2014-11-26 18:26:55,513 - F:\cloud\cloudsdk\tool\logger.py:8356 - cloudsdk.rest.http - Receive response message <httplib.HTTPResponse instance at 0x029208A0> status 200 message <?xml version="1.0" encoding="UTF-8"?>
-<DescribeImagesResponse xmlns="http://ec2.amazonaws.com/doc/2013-10-15/">
-    <requestId>3ae60ec4-38fd-45eb-b0a3-fba3fef6808f</requestId>
-    <imagesSet/>
-</DescribeImagesResponse>
-2014-11-26 18:26:55,516 - F:\cloud\cloudsdk\tool\logger.py:8356 - cloudsdk.rest.request - Response message <Element '{http://ec2.amazonaws.com/doc/2013-10-15/}DescribeImagesResponse' at 0x2923350>

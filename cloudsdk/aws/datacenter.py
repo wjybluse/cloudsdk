@@ -11,7 +11,7 @@ class AWSDCSupport(DCSupport):
     def __init__(self, ctx):
         DCSupport.__init__(self, ctx)
         ctx.service_name = 'ec2'
-        self.request = Request(ctx)
+
 
     def list_regions(self):
         rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='DescribeRegions')
