@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
 from cloudsdk.api.instance import InstanceSupport
-from cloudsdk.rest.request import Request
 from _xml import XmlParser
 from _xml import find_all
 from _xml import validate_rsp
