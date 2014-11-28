@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
 from cloudsdk.api.image import ImageSupport
+from _validate import validate_rsp
 from cloudsdk.tool.logger import LogFactory
 # tecent api is so bad,given the api.qcloud.com and ok
 # image supported
@@ -14,6 +15,7 @@ class TecentImageSupport(ImageSupport):
 
     def list_images(self, image_type=1):
         rsp = self.request.invoke(scheme='https', Action='DescribeImages', imageType=image_type)
+        validate_rsp(rsp, 'DescribeImages')
         if rsp is None:
             return None
         if 'imageSet' not in rsp:
@@ -29,8 +31,7 @@ class TecentImageSupport(ImageSupport):
         rsp = self.request.invoke(scheme='https', Action='CreateImage', instanceId=from_instance,
                                   imageName=name)
         code = eval(rsp)['code']
-        if code != 0:
-            raise ValueError('create image error ' + rsp)
+        validate_rsp(rsp, 'CreateImage')
         images = self.list_images()
         for image in images:
             if image['imageName'].__eq__(name):

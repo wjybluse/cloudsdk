@@ -12,9 +12,15 @@ class TecentInstanceSupport(InstanceSupport):
         InstanceSupport.__init__(self, ctx)
 
     def launch(self, image=None, flavor=None, hostname=None, bandwidth=None, **kwargs):
-        self.request.invoke(scheme='https', Action='RunInstances', imageId=image, cpu=kwargs['cpu'],
-                            mem=kwargs['ram'],
-                            storageSize=kwargs['size'], period=kwargs['period'])
+        """
+        :param image: image id
+        :param flavor: not valid
+        :param hostname: not valid
+        :param bandwidth:
+        :param kwargs: cpu,ram,size,period
+        :return:
+        """
+        self.request.invoke(scheme='https', Action='RunInstances', imageId=image, **kwargs)
 
     def start(self, instance):
         data = {"instanceIds.1": instance}

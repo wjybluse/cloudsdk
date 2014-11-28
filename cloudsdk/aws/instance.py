@@ -12,9 +12,17 @@ class AWSInstanceSupport(InstanceSupport):
         ctx.service_name = 'ec2'
 
     def launch(self, image=None, flavor=None, hostname=None, bandwidth=None, **kwargs):
+        """
+        :param image: image id
+        :param flavor: InstanceType
+        :param hostname: host name,not valid
+        :param bandwidth: not valid
+        :param kwargs: MaxCount,MinCount,KeyName
+        :return:
+        """
         rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='RunInstances', ImageId=image,
                                   MaxCount=1,
-                                  MinCount=1)
+                                  MinCount=1, InstanceType=flavor, **kwargs)
         validate_rsp(rsp, 'RunInstances')
         return find_all(rsp, 'instanceId')
 

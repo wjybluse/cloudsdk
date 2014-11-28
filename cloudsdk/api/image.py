@@ -13,7 +13,7 @@ class ImageSupport():
     def list_images(self, image_type=1):
         """
         :param image_type:current support private and public 1 or 2
-        :return:
+        :return:all image information
         """
         pass
 
@@ -33,6 +33,6 @@ class ImageSupport():
     def query_image(self, name=None):
         """
         :param name: image name
-        :return:
+        :return:image information
         """
         pass
