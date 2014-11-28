@@ -20,7 +20,7 @@ class TecentInstanceSupport(InstanceSupport):
         :param kwargs: cpu,ram,size,period
         :return:
         """
-        self.request.invoke(scheme='https', Action='RunInstances', imageId=image, **kwargs)
+        self.request.invoke(scheme='https', Action='RunInstances', imageId=image, imageType=1, **kwargs)
 
     def start(self, instance):
         data = {"instanceIds.1": instance}

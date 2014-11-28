@@ -7,7 +7,8 @@ FORCE = dict(True='true', False='false')
 
 class AliInstanceSupport(InstanceSupport):
     def launch(self, image=None, flavor=None, hostname=None, callback=None, **kwargs):
-        rsp = self.request.invoke(action='CreateInstance', hostname=hostname, InstanceType=flavor, **kwargs)
+        rsp = self.request.invoke(action='CreateInstance', hostname=hostname, ImageId=image, InstanceType=flavor,
+                                  **kwargs)
         return eval(rsp)['InstanceId']
 
     def start(self, instance):
