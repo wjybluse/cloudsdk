@@ -11,7 +11,7 @@ class Request():
     def __init__(self, ctx):
         self.ctx = ctx
 
-    def invoke(self, scheme='http', callback=None, **kwargs):
+    def invoke(self, scheme='https', callback=None, **kwargs):
         client = None
         try:
             logger.debug("invoke request", "params", kwargs)

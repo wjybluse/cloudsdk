@@ -5,7 +5,7 @@ from cloudsdk.api.security import SecurityGroupSupport
 
 class TecentSecurityGroupSupport(SecurityGroupSupport):
     def create_security_group(self, name=None, description=None, **kwargs):
-        raise NotImplementedError("Qclod does not support this method")
+        raise NotImplementedError("Qcloud does not support this method")
 
     def list_security_group(self):
-        raise NotImplementedError("Qclod does not support this method")
+        raise NotImplementedError("Qcloud does not support this method")

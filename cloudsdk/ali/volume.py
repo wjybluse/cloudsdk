@@ -3,7 +3,7 @@ __author__ = 'wan'
 from cloudsdk.api.volume import VolumeSupport
 from _base import validate_rsp
 # 阿里接口调不通，可能有限制
-#现在正在解决
+# 现在正在解决
 
 class AliVolumeSupport(VolumeSupport):
     def create_volume(self, name=None, snapshot=None, size=0, **kwargs):
@@ -18,7 +18,7 @@ class AliVolumeSupport(VolumeSupport):
     def list_volume(self):
         rsp = self.request.invoke(Action='DescribeDisks')
         validate_rsp(rsp, 'DescribeDisks')
-        rsp = eval(rsp)
+        rsp = eval(rsp.replace("true", "\\\"true\\\"").replace("false", "\\\"false\\\""))
         volumes = eval(rsp)['Disks']
         if volumes is None or len(volumes) <= 0:
             return None

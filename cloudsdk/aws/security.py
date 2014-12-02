@@ -12,13 +12,13 @@ class AWSSecurityGroupSupport(SecurityGroupSupport):
         ctx.service_name = 'ec2'
 
     def create_security_group(self, name=None, description=None, **kwargs):
-        rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='CreateSecurityGroup',
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='CreateSecurityGroup',
                                   GroupName=name,
                                   GroupDescription=description)
         validate_rsp(rsp, 'CreateSecurityGroup')
         return find_all(rsp, 'groupId')
 
     def list_security_group(self):
-        rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='DescribeSecurityGroups')
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='DescribeSecurityGroups')
         validate_rsp(rsp, 'DescribeSecurityGroups')
         return find_all(rsp, 'groupId')

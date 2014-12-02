@@ -29,7 +29,7 @@ class AliImageSupport(ImageSupport):
         rsp = self.request.invoke(Action='DescribeImages')
         if rsp is None:
             return None
-        rsp = eval(rsp)
+        rsp = eval(rsp.replace("true", "\\\"true\\\"").replace("false", "\\\"false\\\""))
         if eval(rsp)['Images'] is None:
             return None
         return eval(rsp)['Images']['Image']

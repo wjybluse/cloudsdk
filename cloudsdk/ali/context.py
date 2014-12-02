@@ -6,13 +6,15 @@ import base64
 import urllib
 import time
 from hashlib import sha1
+
 from cloudsdk.tool.util import encode
 from cloudsdk.api.context import AuthContext
 from cloudsdk.tool.logger import LogFactory
 
+
 logger = LogFactory.logger(__name__)
 timestamp = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-API_VERSION = '2013-01-10'
+API_VERSION = '2014-05-26'
 ENCODING = 'UTF-8'
 RSP_FORMAT = 'JSON'
 SING_VERSION = '1.0'

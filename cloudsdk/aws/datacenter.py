@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
 from cloudsdk.api.datacenter import DCSupport
-from cloudsdk.rest.request import Request
 from _xml import XmlParser
 from _xml import validate_rsp
 from _xml import find_all
@@ -14,11 +13,11 @@ class AWSDCSupport(DCSupport):
 
 
     def list_regions(self):
-        rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='DescribeRegions')
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='DescribeRegions')
         validate_rsp(rsp, 'DescribeRegions')
         return find_all(rsp, 'regionName')
 
     def list_zones(self):
-        rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='DescribeAvailabilityZones')
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='DescribeAvailabilityZones')
         validate_rsp(rsp, 'DescribeAvailabilityZones')
         return find_all(rsp, 'zoneName')

@@ -20,22 +20,22 @@ class TecentInstanceSupport(InstanceSupport):
         :param kwargs: cpu,ram,size,period
         :return:
         """
-        self.request.invoke(scheme='https', Action='RunInstances', imageId=image, imageType=1, **kwargs)
+        self.request.invoke(Action='RunInstances', imageId=image, imageType=1, **kwargs)
 
     def start(self, instance):
         data = {"instanceIds.1": instance}
-        self.request.invoke(scheme='https', Action='StartInstances', **data)
+        self.request.invoke(Action='StartInstances', **data)
 
     def stop(self, instance, force=False):
         data = {"instanceIds.1": instance}
-        self.request.invoke(scheme='https', Action='StopInstances', **data)
+        self.request.invoke(Action='StopInstances', **data)
 
     def remove(self, instance):
         data = {"instanceIds.1": instance}
-        self.request.invoke(scheme='https', Action='TerminateInstances', **data)
+        self.request.invoke(Action='TerminateInstances', **data)
 
     def list_instances(self):
-        rsp = self.request.invoke(scheme='https', Action='DescribeInstances')
+        rsp = self.request.invoke(Action='DescribeInstances')
         logger.debug("The response is", rsp)
         if 'instanceSet' not in rsp:
             return None

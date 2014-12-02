@@ -15,11 +15,11 @@ class AWSVolumeSupport(VolumeSupport):
     def create_volume(self, name=None, snapshot=None, size=0, **kwargs):
         rsp = None
         if snapshot is not None or len(snapshot) > 0:
-            rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='CreateVolume',
+            rsp = self.request.invoke(callback=XmlParser.parser, Action='CreateVolume',
                                       SnapshotId=snapshot,
                                       **kwargs)
         elif size > 0:
-            rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='CreateVolume', Size=size,
+            rsp = self.request.invoke(callback=XmlParser.parser, Action='CreateVolume', Size=size,
                                       **kwargs)
         else:
             raise RequestError(400, 'Invalid Request')
@@ -28,19 +28,19 @@ class AWSVolumeSupport(VolumeSupport):
 
 
     def list_volume(self):
-        rsp = self.request.invoke(scheme='https', Action='DescribeVolumes', callback=XmlParser.parser)
+        rsp = self.request.invoke(Action='DescribeVolumes', callback=XmlParser.parser)
         validate_rsp(rsp, 'DescribeVolumes')
         return find_all(rsp, 'volumeId')
 
 
     def attach_volume(self, instance=None, volume=None, device=None, **kwargs):
-        rsp = self.request.invoke(scheme='https', Action='AttachVolume', callback=XmlParser.parser, InstanceId=instance,
+        rsp = self.request.invoke(Action='AttachVolume', callback=XmlParser.parser, InstanceId=instance,
                                   VolumeId=volume, **kwargs)
         validate_rsp(rsp, 'AttachVolume')
 
 
     def detach_volume(self, instance=None, volume=None):
-        rsp = self.request.invoke(scheme='https', Action='DetachVolume', callback=XmlParser.parser,
+        rsp = self.request.invoke(Action='DetachVolume', callback=XmlParser.parser,
                                   InstanceId=instance,
                                   VolumeId=volume)
         validate_rsp(rsp, 'DetachVolume')

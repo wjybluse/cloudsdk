@@ -14,7 +14,7 @@ class TecentImageSupport(ImageSupport):
         ImageSupport.__init__(self, ctx)
 
     def list_images(self, image_type=1):
-        rsp = self.request.invoke(scheme='https', Action='DescribeImages', imageType=image_type)
+        rsp = self.request.invoke(Action='DescribeImages', imageType=image_type)
         validate_rsp(rsp, 'DescribeImages')
         if rsp is None:
             return None
@@ -28,7 +28,7 @@ class TecentImageSupport(ImageSupport):
         return images
 
     def create_image(self, from_snapshot=None, from_instance=None, name=None, **kwargs):
-        rsp = self.request.invoke(scheme='https', Action='CreateImage', instanceId=from_instance,
+        rsp = self.request.invoke(Action='CreateImage', instanceId=from_instance,
                                   imageName=name)
         code = eval(rsp)['code']
         validate_rsp(rsp, 'CreateImage')
