@@ -20,7 +20,7 @@ class AWSInstanceSupport(InstanceSupport):
         :param kwargs: MaxCount,MinCount,KeyName
         :return:
         """
-        rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='RunInstances', ImageId=image,
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='RunInstances', ImageId=image,
                                   MaxCount=1,
                                   MinCount=1, InstanceType=flavor, **kwargs)
         validate_rsp(rsp, 'RunInstances')
@@ -28,20 +28,20 @@ class AWSInstanceSupport(InstanceSupport):
 
     def start(self, instance):
         data = {'InstanceId.1': instance}
-        rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='StartInstances', **data)
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='StartInstances', **data)
         validate_rsp(rsp, 'StartInstances')
 
     def stop(self, instance, force=False):
         data = {'InstanceId.1': instance}
-        rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='TerminateInstances', **data)
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='TerminateInstances', **data)
         validate_rsp(rsp, 'TerminateInstances')
 
     def list_instances(self):
-        rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='DescribeInstances')
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='DescribeInstances')
         validate_rsp(rsp, 'DescribeInstances')
         return find_all(rsp, 'instanceId')
 
     def remove(self, instance):
         data = {'InstanceId.1': instance}
-        rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='StopInstances', **data)
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='StopInstances', **data)
         validate_rsp(rsp, 'StopInstances')

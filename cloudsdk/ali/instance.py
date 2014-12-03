@@ -6,8 +6,9 @@ FORCE = dict(True='true', False='false')
 
 
 class AliInstanceSupport(InstanceSupport):
-    def launch(self, image=None, flavor=None, hostname=None, callback=None, **kwargs):
-        rsp = self.request.invoke(action='CreateInstance', hostname=hostname, ImageId=image, InstanceType=flavor,
+    def launch(self, image=None, flavor=None, hostname=None, bandwidth=None, callback=None, **kwargs):
+        rsp = self.request.invoke(action='CreateInstance', hostname=hostname, ImageId=image,
+                                  InternetMaxBandwidthOut=bandwidth, InstanceType=flavor,
                                   **kwargs)
         return eval(rsp)['InstanceId']
 

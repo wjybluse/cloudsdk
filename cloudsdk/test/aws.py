@@ -5,9 +5,11 @@ from cloudsdk.aws.image import AWSImageSupport
 from cloudsdk.aws.instance import AWSInstanceSupport
 from cloudsdk.aws.context import AWSContext
 from cloudsdk.aws.datacenter import AWSDCSupport
+from cloudsdk.aws.security import AWSSecurityGroupSupport
+from cloudsdk.aws.volume import AWSVolumeSupport
 
-AWS_KEY = 'your key'
-SECRET_KEY = 'your secret'
+AWS_KEY = 'AKIAI3AIHM7BAUQAIETQ'
+SECRET_KEY = 'dzI9BlYkcloLhQWhMbV5sRS1Rbh2u7Ju9wV4oh3B'
 
 
 class TestAWSSDK(unittest.TestCase):
@@ -54,3 +56,38 @@ class TestAWSSDK(unittest.TestCase):
         rsp = dc.list_zones()
         print(rsp)
         self.assertIsNotNone(rsp)
+
+    def test_create_instance(self):
+        ctx = AWSContext(AWS_KEY, SECRET_KEY, host='ec2.amazonaws.com',
+                         port=443, region='us-east-1')
+
+        instance = AWSInstanceSupport(ctx)
+        instance_id = instance.launch(image='ami-aeb532c6', flavor='t2.micro', KeyName='free')
+        print(instance_id)
+        self.assertIsNotNone(instance_id)
+
+    def test_list_sg(self):
+        ctx = AWSContext(AWS_KEY, SECRET_KEY, host='ec2.amazonaws.com',
+                         port=443, region='us-east-1')
+
+        sg = AWSSecurityGroupSupport(ctx)
+        ret = sg.list_security_group()
+        print(ret)
+        self.assertIsNotNone(ret)
+
+    def test_create_sg(self):
+        ctx = AWSContext(AWS_KEY, SECRET_KEY, host='ec2.amazonaws.com',
+                         port=443, region='us-east-1')
+
+        sg = AWSSecurityGroupSupport(ctx)
+        ret = sg.create_security_group(name='wan', description="testnime")
+        print(ret)
+        self.assertIsNotNone(ret)
+
+    def test_list_volumes(self):
+        ctx = AWSContext(AWS_KEY, SECRET_KEY, host='ec2.amazonaws.com',
+                         port=443, region='us-east-1')
+        volume = AWSVolumeSupport(ctx)
+        ret = volume.list_volume()
+        print(ret)
+        self.assertIsNotNone(ret)

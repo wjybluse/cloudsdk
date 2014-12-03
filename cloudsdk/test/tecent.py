@@ -1,11 +1,12 @@
 __author__ = 'wan'
 import unittest
 from cloudsdk.tecent.instance import TecentInstanceSupport
-from cloudsdk.tecent.cotext import TecentContext
+from cloudsdk.tecent.context import TecentContext
 from cloudsdk.tecent.image import TecentImageSupport
+from cloudsdk.tecent.datacenter import TecentDCSupport
 
-KEY_ID = 'your key'
-KEY_SECRET = 'your secret'
+KEY_ID = 'AKIDXrc2p8iHOOJsD0CwhYJej2MGvU5mA1DP'
+KEY_SECRET = 'sIYOmtNMAIurmZv1X4vneiioFLLDdqPc'
 
 
 class TestTecent(unittest.TestCase):
@@ -32,9 +33,30 @@ class TestTecent(unittest.TestCase):
         image = TecentImageSupport(cxt)
         instance = TecentInstanceSupport(i_ctx)
         instance.stop(id)
-        ret = image.create_image(from_instance=id, name='wan3')
+        ret = image.create_image(from_instance=id, name='testgquery1')
         print(ret)
         self.assertIsNotNone(ret)
+
+    def test_list_regions(self):
+        ctx = TecentContext(KEY_ID, KEY_SECRET,
+                            host='api.qcloud.com', port=443, region='gz')
+        dc = TecentDCSupport(ctx)
+        dcs = dc.list_regions()
+        self.assertIsNotNone(dcs)
+        print(dcs)
+
+    def test_create_instance(self):
+        cxt = TecentContext(KEY_ID, KEY_SECRET, host='api.qcloud.com', port=443, region='gz')
+        instance = TecentInstanceSupport(cxt)
+        # mem,cpu,storageSize,period
+        rsp = instance.launch(image='1470', mem=4, cpu=2, storageSize=100, period=1)
+        self.assertIsNotNone(rsp)
+
+    def test_remove_instance(self):
+        cxt = TecentContext(KEY_ID, KEY_SECRET, host='api.qcloud.com', port=443, region='gz')
+        instance = TecentInstanceSupport(cxt)
+        instance.remove('qcvmfa85f0497c33536dc641eaed5c4e3818')
+
 
 
 

@@ -10,7 +10,7 @@ class TecentDCSupport(DCSupport):
         DCSupport.__init__(self, ctx)
 
     def list_regions(self):
-        rsp = self.request.invoke(scheme='https', Action='DescribeProductRegionList', instanceType=1)
+        rsp = self.request.invoke(Action='DescribeProductRegionList', instanceType=1)
         validate_rsp(rsp, 'DescribeProductRegionList')
         rsp = eval(rsp)
         return eval(rsp)['availableRegion'].keys()

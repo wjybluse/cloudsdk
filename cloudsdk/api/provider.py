@@ -1,31 +1,36 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
-from instance import InstanceSupport
-from image import ImageSupport
-from datacenter import DCSupport
-from snapshot import SnapshotSupport
+import abc
 
 
 class CloudProvider():
-    instance = None
-
     def __init__(self, ctx):
         self.ctx = ctx
 
+    @abc.abstractmethod
     def instance_provider(self):
-        return InstanceSupport(self.ctx)
+        pass
 
+    @abc.abstractmethod
     def image_support(self):
-        return ImageSupport(self.ctx)
+        pass
 
+    @abc.abstractmethod
     def dc_support(self):
-        return DCSupport(self.ctx)
+        pass
 
+    @abc.abstractmethod
     def snapshot_support(self):
-        return SnapshotSupport(self.ctx)
+        pass
+
+    @abc.abstractmethod
+    def security_support(self):
+        pass
+
+    @abc.abstractmethod
+    def volume_support(self):
+        pass
 
     @classmethod
-    def instance(cls):
-        if cls.instance is None:
-            cls.instance = cls()
-        return cls.instance
+    def instance(cls, access_key, secret_key, host='localhost', port=80, region=None, **kwargs):
+        raise NotImplementedError("The method not implement")

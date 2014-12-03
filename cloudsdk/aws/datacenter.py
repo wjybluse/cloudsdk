@@ -14,11 +14,11 @@ class AWSDCSupport(DCSupport):
 
 
     def list_regions(self):
-        rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='DescribeRegions')
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='DescribeRegions')
         validate_rsp(rsp, 'DescribeRegions')
         return find_all(rsp, 'regionName')
 
     def list_zones(self):
-        rsp = self.request.invoke(scheme='https', callback=XmlParser.parser, Action='DescribeAvailabilityZones')
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='DescribeAvailabilityZones')
         validate_rsp(rsp, 'DescribeAvailabilityZones')
         return find_all(rsp, 'zoneName')
