@@ -30,7 +30,6 @@ class TecentImageSupport(ImageSupport):
     def create_image(self, from_snapshot=None, from_instance=None, name=None, **kwargs):
         rsp = self.request.invoke(Action='CreateImage', instanceId=from_instance,
                                   imageName=name)
-        code = eval(rsp)['code']
         validate_rsp(rsp, 'CreateImage')
         images = self.list_images()
         for image in images:

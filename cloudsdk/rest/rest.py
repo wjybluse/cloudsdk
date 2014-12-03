@@ -7,7 +7,7 @@ logger = LogFactory.logger(__name__)
 
 
 class RestClient():
-    def __init__(self, scheme="http", host="localhost", port=80):
+    def __init__(self, scheme="http", host="localhost", port=80, **kwargs):
         """
         :param scheme: str,support http or https
         :param host: str,the host name
@@ -17,7 +17,7 @@ class RestClient():
         try:
             class_name = "{0}Client".format(scheme.upper())
             module = __import__("cloudsdk.rest.http", fromlist=[class_name])
-            self.client = getattr(module, class_name)(host, port)
+            self.client = getattr(module, class_name)(host, port, **kwargs)
         except NotImplementedError, e:
             logger.info("The class not implement", self.__class__)
             raise NotImplementedError("The class not found " + e)

@@ -8,7 +8,7 @@ logger = LogFactory.logger(__name__)
 
 
 class HTTPSupport():
-    def __init__(self, host="localhost", port=80):
+    def __init__(self, host="localhost", port=80, **kwargs):
         self.host = host
         self.port = port
         self.headers = dict()
@@ -50,7 +50,7 @@ class HTTPSupport():
 
 
 class HTTPClient(HTTPSupport):
-    def __init__(self, host="localhost", port=80):
+    def __init__(self, host="localhost", port=80, **kwargs):
         """
         :param host: str,host name
         :param port: int ,server port
@@ -60,7 +60,7 @@ class HTTPClient(HTTPSupport):
 
 
 class HTTPSClient(HTTPSupport):
-    def __init__(self, host="localhost", port=443):
+    def __init__(self, host="localhost", port=443, **kwargs):
         """
         :param host: str,host name
         :param port: int ,server port
@@ -68,6 +68,6 @@ class HTTPSClient(HTTPSupport):
         logger.info("Invoke https client")
         HTTPSupport.__init__(self, host=host, port=port)
         if str(self.port).__eq__('443'):
-            self._client = HTTPSConnection(self.host)
+            self._client = HTTPSConnection(self.host, **kwargs)
         else:
-            self._client = HTTPSConnection(self.host, port=self.port)
+            self._client = HTTPSConnection(self.host, port=self.port, **kwargs)
