@@ -5,8 +5,8 @@ from cloudsdk.tecent.context import TecentContext
 from cloudsdk.tecent.image import TecentImageSupport
 from cloudsdk.tecent.datacenter import TecentDCSupport
 
-KEY_ID = 'AKIDXrc2p8iHOOJsD0CwhYJej2MGvU5mA1DP'
-KEY_SECRET = 'sIYOmtNMAIurmZv1X4vneiioFLLDdqPc'
+KEY_ID = ''
+KEY_SECRET = ''
 
 
 class TestTecent(unittest.TestCase):

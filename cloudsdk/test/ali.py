@@ -9,8 +9,8 @@ from cloudsdk.ali.volume import AliVolumeSupport
 from cloudsdk.ali.security import AliSecurityGroupSupport
 from cloudsdk.ali.provider import AliCloudProvider
 
-KEY_ID = 'ldQ2leJaGVQYFxx4'
-KEY_SECRET = 'rdGRencqiPRA4OhazHQSdJepRBg2Tv'
+KEY_ID = ''
+KEY_SECRET = ''
 
 
 class AliCloudTest(unittest.TestCase):

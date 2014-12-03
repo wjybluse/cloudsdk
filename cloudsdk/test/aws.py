@@ -8,8 +8,8 @@ from cloudsdk.aws.datacenter import AWSDCSupport
 from cloudsdk.aws.security import AWSSecurityGroupSupport
 from cloudsdk.aws.volume import AWSVolumeSupport
 
-AWS_KEY = 'AKIAI3AIHM7BAUQAIETQ'
-SECRET_KEY = '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'
+AWS_KEY = ''
+SECRET_KEY = ''
 
 
 class TestAWSSDK(unittest.TestCase):
