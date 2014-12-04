@@ -30,7 +30,7 @@ class TecentInstanceSupport(InstanceSupport):
         data = {"instanceIds.1": instance}
         self.request.invoke(Action='StopInstances', **data)
 
-    def remove(self, instance):
+    def remove_instance(self, instance):
         data = {"instanceIds.1": instance}
         self.request.invoke(Action='TerminateInstances', **data)
 

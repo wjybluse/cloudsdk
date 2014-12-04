@@ -10,3 +10,6 @@ class TecentSnapshotSupport(SnapshotSupport):
     def create_snapshot(self, disk=None, name=None, **kwargs):
         raise NotImplementedError("The qcloud not support the method")
 
+    def remove_snapshot(self, snapshot):
+        raise NotImplementedError("The qcloud not support the method")
+

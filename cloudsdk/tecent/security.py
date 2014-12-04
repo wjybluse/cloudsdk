@@ -9,3 +9,6 @@ class TecentSecurityGroupSupport(SecurityGroupSupport):
 
     def list_security_group(self):
         raise NotImplementedError("Qcloud does not support this method")
+
+    def remove_security_group(self, group):
+        raise NotImplementedError("Qcloud does not support this method")

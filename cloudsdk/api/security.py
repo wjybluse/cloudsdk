@@ -11,8 +11,25 @@ class SecurityGroupSupport():
 
     @abc.abstractmethod
     def create_security_group(self, name=None, description=None, **kwargs):
+        """
+        :param name: name of security group
+        :param description: desc
+        :param kwargs: other information
+        :return:
+        """
         pass
 
     @abc.abstractmethod
     def list_security_group(self):
+        """
+        :return:security group id
+        """
+        pass
+
+    @abc.abstractmethod
+    def remove_security_group(self, group):
+        """
+        :param group: group id
+        :return:
+        """
         pass

@@ -22,3 +22,7 @@ class AWSSecurityGroupSupport(SecurityGroupSupport):
         rsp = self.request.invoke(callback=XmlParser.parser, Action='DescribeSecurityGroups')
         validate_rsp(rsp, 'DescribeSecurityGroups')
         return find_all(rsp, 'groupId')
+
+    def remove_security_group(self, group):
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='DeleteSecurityGroup', GroupId=group)
+        validate_rsp(rsp, 'DeleteSecurityGroup')

@@ -9,3 +9,6 @@ class AzureSecurityGroupSupport(SecurityGroupSupport):
 
     def list_security_group(self):
         pass
+
+    def remove_security_group(self, group):
+        pass

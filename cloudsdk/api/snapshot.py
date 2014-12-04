@@ -30,3 +30,11 @@ class SnapshotSupport():
         :return:
         """
         pass
+
+    @abc.abstractmethod
+    def remove_snapshot(self, snapshot):
+        """
+        :param snapshot: snapshot id
+        :return:
+        """
+        pass

@@ -31,6 +31,7 @@ class CloudProvider():
     def volume_support(self):
         pass
 
+    @abc.abstractmethod
     @classmethod
     def instance(cls, access_key, secret_key, host='localhost', port=80, region=None, **kwargs):
-        raise NotImplementedError("The method not implement")
+        pass

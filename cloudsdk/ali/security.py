@@ -23,3 +23,7 @@ class AliSecurityGroupSupport(SecurityGroupSupport):
         for item in items:
             security.append(item)
         return security
+
+    def remove_security_group(self, group):
+        rsp = self.request.invoke(Action='DeleteSecurityGroup', SecurityGroupId=group)
+        validate_rsp(rsp, 'DeleteSecurityGroup')

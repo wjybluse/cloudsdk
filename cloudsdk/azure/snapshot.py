@@ -14,3 +14,6 @@ class AzureSnapshotSupport(SnapshotSupport):
 
     def create_snapshot(self, disk=None, name=None, **kwargs):
         raise NotImplementedError("the cloud can not support this method")
+
+    def remove_snapshot(self, snapshot):
+        pass
