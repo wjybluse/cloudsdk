@@ -16,7 +16,7 @@ class AliVolumeSupport(VolumeSupport):
             rsp = self.request.invoke(Action='CreateDisk', Size=size, **kwargs)
         else:
             rsp = self.request.invoke(Action='CreateDisk', SnapshotId=snapshot, **kwargs)
-        validate_rsp(replace_java_keyword(rsp))
+        validate_rsp(replace_java_keyword(rsp), 'CreateDisk')
         return eval(rsp)['DiskId']
 
     def list_volume(self):
@@ -34,11 +34,15 @@ class AliVolumeSupport(VolumeSupport):
 
     def attach_volume(self, instance=None, volume=None, device=None, **kwargs):
         rsp = self.request.invoke(Action='AttachDisk', InstanceId=instance, DiskId=volume, Device=device, **kwargs)
-        validate_rsp(rsp, 'DescribeDisks')
+        validate_rsp(rsp, 'AttachDisk')
 
     def detach_volume(self, instance=None, volume=None):
         rsp = self.request.invoke(Action='DetachDisk', InstanceId=instance, DiskId=volume)
-        validate_rsp(rsp, 'DescribeDisks')
+        validate_rsp(rsp, 'DetachDisk')
+
+    def remove_volume(self, volume):
+        rsp = self.request.invoke(Action='DeleteDisk', DiskId=volume)
+        validate_rsp(rsp, 'DeleteDisk')
 
 
 def replace_java_keyword(rsp):

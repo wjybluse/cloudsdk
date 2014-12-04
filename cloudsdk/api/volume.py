@@ -46,3 +46,11 @@ class VolumeSupport():
         :return: nothing
         """
         pass
+
+    @abc.abstractmethod
+    def remove_volume(self, volume):
+        """
+        :param volume: volume id
+        :return:
+        """
+        pass

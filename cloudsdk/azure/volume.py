@@ -31,3 +31,6 @@ class AzureVolumeSupport(VolumeSupport):
 
     def list_volume(self):
         return self.azure.list_disks()
+
+    def remove_volume(self, volume):
+        pass

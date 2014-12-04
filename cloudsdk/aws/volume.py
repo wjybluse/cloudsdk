@@ -44,3 +44,8 @@ class AWSVolumeSupport(VolumeSupport):
                                   InstanceId=instance,
                                   VolumeId=volume)
         validate_rsp(rsp, 'DetachVolume')
+
+    def remove_volume(self, volume):
+        rsp = self.request.invoke(Action='DeleteVolume', callback=XmlParser.parser,
+                                  VolumeId=volume)
+        validate_rsp(rsp, 'DeleteVolume')

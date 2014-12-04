@@ -15,3 +15,6 @@ class TecentVolumeSupport(VolumeSupport):
 
     def detach_volume(self, instance=None, volume=None):
         raise NotImplementedError("Qcloud does not support this method")
+
+    def remove_volume(self, volume):
+        raise NotImplementedError("Qcloud does not support this method")
