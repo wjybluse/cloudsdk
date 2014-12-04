@@ -34,4 +34,8 @@ class AWSImageSupport(ImageSupport):
         validate_rsp(rsp, 'DescribeImages')
         return find_all(rsp, 'imageName')
 
+    def remove_image(self, image):
+        rsp = self.request.invoke(callback=XmlParser.parser, Action='DeregisterImage', ImageId=image)
+        validate_rsp(rsp)
+
 

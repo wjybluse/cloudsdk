@@ -41,7 +41,7 @@ class InstanceSupport(object):
         pass
 
     @abc.abstractmethod
-    def remove(self, instance):
+    def remove_instance(self, instance):
         """
         :param instance: instance id
         :return:
@@ -50,4 +50,7 @@ class InstanceSupport(object):
 
     @abc.abstractmethod
     def list_instances(self):
+        """
+        :return:return all instance created
+        """
         pass

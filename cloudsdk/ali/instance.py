@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
 from cloudsdk.api.instance import InstanceSupport
+from _base import validate_rsp
 
 FORCE = dict(True='true', False='false')
 
@@ -10,16 +11,20 @@ class AliInstanceSupport(InstanceSupport):
         rsp = self.request.invoke(action='CreateInstance', hostname=hostname, ImageId=image,
                                   InternetMaxBandwidthOut=bandwidth, InstanceType=flavor,
                                   **kwargs)
+        validate_rsp(rsp, 'CreateInstance')
         return eval(rsp)['InstanceId']
 
     def start(self, instance):
-        self.request.invoke(Action='StartInstance', InstanceId=instance)
+        rsp = self.request.invoke(Action='StartInstance', InstanceId=instance)
+        validate_rsp(rsp, 'StartInstance')
 
     def stop(self, instance, force=False):
-        self.request.invoke(Action='StopInstance', InstanceId=instance, ForceStop=FORCE[force])
+        rsp = self.request.invoke(Action='StopInstance', InstanceId=instance, ForceStop=FORCE[force])
+        validate_rsp(rsp, 'StopInstance')
 
-    def remove(self, instance):
-        self.request.invoke(Action='DeleteInstance', InstanceId=instance)
+    def remove_instance(self, instance):
+        rsp = self.request.invoke(Action='DeleteInstance', InstanceId=instance)
+        validate_rsp(rsp, 'DeleteInstance')
 
     def list_instances(self):
         rsp = self.request.invoke(Action='DescribeInstanceStatus')
@@ -36,4 +41,5 @@ class AliInstanceSupport(InstanceSupport):
         for instance in ret:
             instances.append(instance)
         return instances
+
 

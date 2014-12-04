@@ -36,3 +36,11 @@ class ImageSupport():
         :return:image information
         """
         pass
+
+    @abc.abstractmethod
+    def remove_image(self, image):
+        """
+        :param image: image id
+        :return:
+        """
+        pass

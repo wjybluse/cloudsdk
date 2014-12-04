@@ -44,7 +44,7 @@ class AzureInstanceSupport(InstanceSupport):
     def list_instances(self):
         return self.azure.list_role_sizes()
 
-    def remove(self, instance):
+    def remove_instance(self, instance):
         """
         deploy name?service name is what
         :param instance:

@@ -44,3 +44,8 @@ class TecentImageSupport(ImageSupport):
             if image['imageName'].__eq__(name):
                 return image
         return None
+
+    def remove_image(self, image):
+        data = {"imageIds.1": image}
+        rsp = self.request.invoke(Action='DeleteImages', **data)
+        validate_rsp(rsp, 'DeleteImages')

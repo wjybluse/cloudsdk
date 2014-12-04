@@ -41,7 +41,7 @@ class AWSInstanceSupport(InstanceSupport):
         validate_rsp(rsp, 'DescribeInstances')
         return find_all(rsp, 'instanceId')
 
-    def remove(self, instance):
+    def remove_instance(self, instance):
         data = {'InstanceId.1': instance}
         rsp = self.request.invoke(callback=XmlParser.parser, Action='StopInstances', **data)
         validate_rsp(rsp, 'StopInstances')
