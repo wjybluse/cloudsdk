@@ -12,7 +12,7 @@ class AzureInstanceSupport(InstanceSupport):
 
     def launch(self, image=None, flavor=None, hostname=None, bandwidth=None, **kwargs):
         """
-        azure create vm is so complex,fuck
+        azure create vm is so complex
         :param image: image name
         :param flavor: role size
         :param hostname:support host name
