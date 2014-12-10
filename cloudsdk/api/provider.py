@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
 import abc
+from _toolbox.logger import log
 
 
 class CloudProvider():
@@ -8,7 +9,7 @@ class CloudProvider():
         self.ctx = ctx
 
     @abc.abstractmethod
-    def instance_provider(self):
+    def instance_support(self):
         pass
 
     @abc.abstractmethod
@@ -31,7 +32,7 @@ class CloudProvider():
     def volume_support(self):
         pass
 
-    @abc.abstractmethod
     @classmethod
+    @log
     def instance(cls, access_key, secret_key, host='localhost', port=80, region=None, **kwargs):
         pass

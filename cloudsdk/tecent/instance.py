@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
 from cloudsdk.api.instance import InstanceSupport
-from cloudsdk.tool.logger import LogFactory
+from _toolbox.logger import LogFactory
 
 logger = LogFactory.logger(__name__)
 
@@ -42,5 +42,5 @@ class TecentInstanceSupport(InstanceSupport):
         instances = []
         rsp = eval(rsp)
         for instance in eval(rsp)['instanceSet']:
-            instances.append(instance)
+            instances.append(instance['instanceId'])
         return instances

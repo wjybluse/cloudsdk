@@ -48,6 +48,7 @@ class InstanceSupport(object):
         """
         pass
 
+
     @abc.abstractmethod
     def list_instances(self):
         """

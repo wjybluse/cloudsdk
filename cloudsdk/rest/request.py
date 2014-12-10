@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
 from cloudsdk.rest.rest import RestClient
-from cloudsdk.tool.error import RequestError
-from cloudsdk.tool.logger import LogFactory
+from _toolbox.error import RequestError
+from _toolbox.logger import LogFactory
 
 logger = LogFactory.logger(__name__)
 

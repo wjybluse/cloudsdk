@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
-from cloudsdk.tool.logger import LogFactory
+from _toolbox.logger import LogFactory
 from cloudsdk.rest.request import RequestError
 
 logger = LogFactory.logger(__name__)

@@ -2,7 +2,9 @@
 __author__ = 'wan'
 import json
 from httplib import HTTPConnection, HTTPSConnection
-from cloudsdk.tool.logger import LogFactory
+
+from _toolbox.logger import LogFactory
+
 
 logger = LogFactory.logger(__name__)
 

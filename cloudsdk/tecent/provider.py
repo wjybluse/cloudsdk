@@ -17,7 +17,7 @@ class TecentCloudProvider(CloudProvider):
     def security_support(self):
         return TecentSecurityGroupSupport(self.ctx)
 
-    def instance_provider(self):
+    def instance_support(self):
         return TecentInstanceSupport(self.ctx)
 
     def volume_support(self):

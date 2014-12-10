@@ -10,14 +10,14 @@ from snapshot import AWSSnapshotSupport
 from context import AWSContext
 
 
-class AWSCloudProvider(CloudProvider):
+class AwsCloudProvider(CloudProvider):
     def image_support(self):
         return AWSImageSupport(self.ctx)
 
     def security_support(self):
         return AWSSecurityGroupSupport(self.ctx)
 
-    def instance_provider(self):
+    def instance_support(self):
         return AWSInstanceSupport(self.ctx)
 
     def volume_support(self):

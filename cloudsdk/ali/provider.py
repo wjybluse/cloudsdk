@@ -17,7 +17,7 @@ class AliCloudProvider(CloudProvider):
     def security_support(self):
         return AliSecurityGroupSupport(self.ctx)
 
-    def instance_provider(self):
+    def instance_support(self):
         return AliInstanceSupport(self.ctx)
 
     def volume_support(self):

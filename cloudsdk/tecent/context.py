@@ -6,9 +6,11 @@ import hmac
 import urllib
 from hashlib import sha1
 import base64
+
 from cloudsdk.api.context import AuthContext
-from cloudsdk.tool.logger import LogFactory
-from cloudsdk.tool.util import encode
+from _toolbox.logger import LogFactory
+from _toolbox.utils import encode
+
 
 logger = LogFactory.logger(__name__)
 URL = '/v2/index.php'

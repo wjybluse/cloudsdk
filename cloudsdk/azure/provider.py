@@ -17,7 +17,7 @@ class AzureCloudProvider(CloudProvider):
     def security_support(self):
         return AzureSecurityGroupSupport(self.ctx)
 
-    def instance_provider(self):
+    def instance_support(self):
         return AzureInstanceSupport(self.ctx)
 
     def volume_support(self):

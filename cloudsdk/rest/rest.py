@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
-from cloudsdk.tool.logger import LogFactory
 import base64
+
+from _toolbox.logger import LogFactory
+
 
 logger = LogFactory.logger(__name__)
 

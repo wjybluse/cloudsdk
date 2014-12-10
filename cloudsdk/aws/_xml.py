@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
-import xmltodict
-from cloudsdk.tool.logger import LogFactory
 from xml.etree import ElementTree as tree
-from cloudsdk.tool.error import RequestError
+
+import xmltodict
+
+from _toolbox.logger import LogFactory
+from _toolbox.error import RequestError
+
 
 logger = LogFactory.logger(__name__)
 
@@ -24,6 +27,7 @@ class XmlParser():
 def _find_error(status, msg):
     obj = xmltodict.parse(msg)
     obj['status'] = status
+    obj['message'] = msg
     logger.error("the error response", obj)
     return obj
 

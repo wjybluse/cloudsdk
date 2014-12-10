@@ -2,7 +2,7 @@
 __author__ = 'wan'
 from cloudsdk.api.image import ImageSupport
 from _xml import XmlParser
-from cloudsdk.tool.logger import LogFactory
+from _toolbox.logger import LogFactory
 from _xml import find_all
 from _xml import validate_rsp
 
@@ -27,7 +27,7 @@ class AWSImageSupport(ImageSupport):
         rsp = self.request.invoke(callback=XmlParser.parser, Action='CreateImage',
                                   InstanceId=from_instance, Name=name)
         validate_rsp(rsp, 'CreateImage')
-        return find_all(rsp, 'imageId')
+        return find_all(rsp, 'imageId')[0]
 
     def query_image(self, name=None, **kwargs):
         rsp = self.request.invoke(callback=XmlParser.parser, Action='DescribeImages')
