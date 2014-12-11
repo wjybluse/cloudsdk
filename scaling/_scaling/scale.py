@@ -10,9 +10,9 @@ from _toolbox.logger import LogFactory
 
 
 logger = LogFactory.logger(__name__)
-CLOUD_INFO = dict(ali=['ecs.aliyuncs.com', 443, 'ldQ2leJaGVQYFxx4', 'rdGRencqiPRA4OhazHQSdJepRBg2Tv', 'cn-shenzhen'],
-                  tecent=['api.qcloud.com', 443, 'ldQ2leJaGVQYFxx4', 'sIYOmtNMAIurmZv1X4vneiioFLLDdqPc', 'gz'],
-                  aws=['ec2.amazonaws.com', 443, 'AKIAI3AIHM7BAUQAIETQ', 'dzI9BlYkcloLhQWhMbV5sRS1Rbh2u7Ju9wV4oh3B',
+CLOUD_INFO = dict(ali=['ecs.aliyuncs.com', 443, 'xx', 'xx', 'cn-shenzhen'],
+                  tecent=['api.qcloud.com', 443, 'xx', 'xx', 'gz'],
+                  aws=['ec2.amazonaws.com', 443, 'xx', 'xx',
                        'us-east-1'],
                   azure=['', 443, '', '', ''])
 
