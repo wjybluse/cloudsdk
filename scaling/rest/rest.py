@@ -3,13 +3,15 @@ __author__ = 'wan'
 import base64
 import json
 import abc
+
 import yaml
 from gevent.pywsgi import *
+
 from scaling.orm.mongo import DBServer
 from . import ConfigUtil
-from . import RestError, RouteError
-from cloudsdk.tool.logger import LogFactory
-from . import Utils
+from _toolbox.utils import RestError, RouteError
+from _toolbox.logger import LogFactory
+from _toolbox.utils import Utils
 
 
 HANDLERS = dict(get="query", head="query", link="query", post="add", put="update", patch="update", delete="delete")
@@ -55,21 +57,21 @@ class RestServer():
             logger.info("The method is", method, "skip validate")
         else:
             content_type = env['CONTENT_TYPE']
-            if not "application/json" in content_type:
+            if "application/json" not in content_type:
                 start_response(
                     status(501, CODE_MSG[501]),
                     headers())
                 return response(error_message("The type can not be supported"))
             content_len = env['CONTENT_LENGTH']
             data = env['wsgi.input'].read(content_len).replace("\n\t", "\n")
-        value = None
         try:
             value = self.handle_route(env)(data)
             logger.info("The type of data", value)
-        except RestError, e:
+        except Exception, e:
             logger.error("Send message error", e)
+            code = getattr(e, 'code', 400)
             start_response(
-                status(e.code, CODE_MSG[e.code]),
+                status(code, CODE_MSG[code]),
                 headers())
             return response(error_message(e.message))
         if value is None:
@@ -99,7 +101,6 @@ class RestServer():
 
 
 def auth(env):
-    basic = None
     try:
         logger.warn("The header info", env)
         basic = env["HTTP_AUTHORIZATION"]
@@ -256,7 +257,7 @@ class Handler():
 
 
 """
-common handler to deal with system request
+_toolbox handler to deal with system request
 if you want to extension,please use extension interface
 or define your own handler
 """
@@ -303,11 +304,3 @@ class CountHandler(Handler):
         if len(self.args) == 2:
             return self.server.count(id=self.args[1])
         return self.server.count(**conditions)
-
-
-
-
-
-
-
-
