@@ -18,3 +18,6 @@ class TecentVolumeSupport(VolumeSupport):
 
     def remove_volume(self, volume):
         raise NotImplementedError("Qcloud does not support this method")
+
+    def query_volume_details(self, volume):
+        raise NotImplementedError("Qcloud does not support this method")

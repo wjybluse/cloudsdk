@@ -47,12 +47,15 @@ class TecentImageSupport(ImageSupport):
         rsp = self.request.invoke(Action='DescribeImages', imageType=image_type)
         validate_rsp(rsp, 'DescribeImages')
         if rsp is None:
-            return None
+            return []
         if 'imageSet' not in rsp:
             logger.error("can not find the images", rsp)
-            return None
+            return []
         images = []
         rsp = eval(rsp)
         for image in eval(rsp)['imageSet']:
             images.append(image)
         return images
+
+    def query_image_details(self, image):
+        pass

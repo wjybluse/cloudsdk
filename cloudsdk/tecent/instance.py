@@ -44,3 +44,6 @@ class TecentInstanceSupport(InstanceSupport):
         for instance in eval(rsp)['instanceSet']:
             instances.append(instance['instanceId'])
         return instances
+
+    def query_instance_details(self, instance):
+        pass
