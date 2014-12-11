@@ -21,3 +21,6 @@ class AzureImageSupport(ImageSupport):
 
     def query_image(self, name=None):
         pass
+
+    def query_image_details(self, image):
+        pass

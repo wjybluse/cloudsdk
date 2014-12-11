@@ -52,3 +52,6 @@ class AzureInstanceSupport(InstanceSupport):
         """
         self.azure.delete_deployment(service_name=instance,
                                      deployment_name=instance)
+
+    def query_instance_details(self, instance):
+        pass

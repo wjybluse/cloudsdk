@@ -34,3 +34,6 @@ class AzureVolumeSupport(VolumeSupport):
 
     def remove_volume(self, volume):
         pass
+
+    def query_volume_details(self, volume):
+        pass
