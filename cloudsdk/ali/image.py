@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
 from cloudsdk.api.image import ImageSupport
+from cloudsdk.api.image import to_image
 from _toolbox.logger import log
 from _base import validate_rsp
 
@@ -45,3 +46,12 @@ class AliImageSupport(ImageSupport):
     def remove_image(self, image):
         rsp = self.request.invoke(Action='DeleteImage', ImageId=image)
         validate_rsp(rsp, 'DeleteImage')
+
+    def query_image_details(self, image):
+        images = self._list_images()
+        if images is None:
+            return None
+        for tpl in images:
+            if tpl['ImageId'] == image:
+                return to_image(image, tpl['ImageName'], '')
+        return None

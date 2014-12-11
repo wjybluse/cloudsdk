@@ -23,8 +23,8 @@ SIGN_METHOD = 'HMAC-SHA1'
 
 class AliContext(AuthContext):
     def get_context(self):
-        params = dict(Version=API_VERSION, AccessKeyId=self.access_key, TimeStamp=timestamp, Format=RSP_FORMAT,
-                      SignatureVersion=self.get_version(), SignatureNonce=str(uuid.uuid1()),
+        params = dict(Version=self.get_version(), AccessKeyId=self.access_key, TimeStamp=timestamp, Format=RSP_FORMAT,
+                      SignatureVersion=SING_VERSION, SignatureNonce=str(uuid.uuid1()),
                       SignatureMethod=SIGN_METHOD)
         if self.region is not None:
             params['RegionId'] = self.region
@@ -44,7 +44,7 @@ class AliContext(AuthContext):
     def get_version(self):
         if hasattr(self, 'version'):
             return getattr(self, 'version')
-        return SING_VERSION
+        return API_VERSION
 
 
 class URLParser():

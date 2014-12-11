@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
 from cloudsdk.api.instance import InstanceSupport
+from cloudsdk.api.instance import to_instance
 from _toolbox.logger import log
 from _base import validate_rsp
 
@@ -33,19 +34,20 @@ class AliInstanceSupport(InstanceSupport):
 
     @log
     def list_instances(self):
-        rsp = self.request.invoke(Action='DescribeInstanceStatus')
-        if rsp is None:
-            return None
-        rsp = eval(rsp)
-        status = eval(rsp)['InstanceStatuses']
-        if status is None:
-            return None
+        rsp = self.request.invoke(Action='DescribeInstanceStatus', InstanceStatus='LockReason')
+        validate_rsp(rsp, 'DescribeInstanceStatus')
+        status = eval(eval(rsp))['InstanceStatuses']
         ret = status['InstanceStatus']
-        if len(ret) <= 0:
-            return None
         instances = []
         for instance in ret:
             instances.append(instance['InstanceId'])
         return instances
+
+    def query_instance_details(self, instance):
+        rsp = self.request.invoke(Action='DescribeInstanceAttribute', InstanceId=instance)
+        validate_rsp(rsp)
+        rsp = eval(eval(rsp))
+        return to_instance(instance, rsp['InstanceName'], rsp['InnerIpAddress']['IpAddress'], rsp['ImageId'])
+
 
 
