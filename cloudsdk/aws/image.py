@@ -38,4 +38,7 @@ class AWSImageSupport(ImageSupport):
         rsp = self.request.invoke(callback=XmlParser.parser, Action='DeregisterImage', ImageId=image)
         validate_rsp(rsp)
 
+    def query_image_details(self, image):
+        pass
+
 

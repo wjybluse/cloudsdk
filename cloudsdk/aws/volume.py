@@ -49,3 +49,6 @@ class AWSVolumeSupport(VolumeSupport):
         rsp = self.request.invoke(Action='DeleteVolume', callback=XmlParser.parser,
                                   VolumeId=volume)
         validate_rsp(rsp, 'DeleteVolume')
+
+    def query_volume_details(self, volume):
+        pass

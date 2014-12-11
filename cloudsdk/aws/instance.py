@@ -51,3 +51,6 @@ class AWSInstanceSupport(InstanceSupport):
         data = {'InstanceId.1': instance}
         rsp = self.request.invoke(callback=XmlParser.parser, Action='StopInstances', **data)
         validate_rsp(rsp, 'StopInstances')
+
+    def query_instance_details(self, instance):
+        pass
