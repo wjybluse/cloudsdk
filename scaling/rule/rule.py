@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
 from scaling.orm.mongo import DBServer
+from _toolbox.logger import log
 
 
 class Rule():
     cls = None
 
     def __init__(self):
-        self.server = DBServer('rule', 'tasks')
+        self.server = DBServer('everhomes_rule', 'tasks')
 
 
     def _find(self, pattern=None, **conditions):
@@ -17,6 +18,7 @@ class Rule():
         return self.server.find_all()
 
     @staticmethod
+    @log
     def validate(key, condition):
         server = DBServer(key, 'tasks')
         # should add datetime support?
@@ -29,7 +31,7 @@ class Rule():
     # send alarm
     @staticmethod
     def send_alarm(data):
-        server = DBServer('alarm', 'tasks')
+        server = DBServer('everhomes_alarm', 'tasks')
         server.insert(data)
         server.close()
 

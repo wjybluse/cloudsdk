@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wan'
 from scaling.orm.mongo import DBServer
-from cloudsdk.tool.logger import LogFactory
+from _toolbox.logger import LogFactory
 
-logger = LogFactory.logger(__file__)
+logger = LogFactory.logger(__name__)
 
 
 class RuleManager():
@@ -11,7 +11,7 @@ class RuleManager():
         """
         db client DBServer('collection','table')
         """
-        self.db = DBServer('rule', 'tasks')
+        self.db = DBServer('everhomes_rule', 'tasks')
 
     def register(self, rule, **condition):
         """
