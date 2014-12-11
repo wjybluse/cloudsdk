@@ -44,3 +44,15 @@ class ImageSupport():
         :return:
         """
         pass
+
+    @abc.abstractmethod
+    def query_image_details(self, image):
+        """
+        :param image: image id
+        :return: <image id,image name,snapshot>
+        """
+        pass
+
+
+def to_image(id, name, snapshot):
+    return dict(id=id, name=name, snapshot=snapshot)

@@ -55,3 +55,15 @@ class InstanceSupport(object):
         :return:return all instance created
         """
         pass
+
+    @abc.abstractmethod
+    def query_instance_details(self, instance):
+        """
+        :param instance: instance id
+        :return:the information of instance<include name,ip,id,image>
+        """
+        pass
+
+
+def to_instance(id, name, ip, image):
+    return dict(id=id, name=name, ip=ip, image=image)

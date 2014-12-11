@@ -54,3 +54,15 @@ class VolumeSupport():
         :return:
         """
         pass
+
+    @abc.abstractmethod
+    def query_volume_details(self, volume):
+        """
+        :param volume: query volume details,volume id
+        :return:<volume id,name,size,instances>
+        """
+        pass
+
+
+def to_volume(id, name, size, instance):
+    return dict(id=id, name=name, size=size, instance=instance)
